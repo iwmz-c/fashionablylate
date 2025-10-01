@@ -19,7 +19,7 @@ class ContactController extends Controller
         $tel = $request->only(['tel1','tel2','tel3']);
         $tel = $tel['tel1'] . $tel['tel2'] . $tel['tel3'];
 
-        $contact = $request->only(['last_name', 'first_name', 'gender', 'email', 'address', 'building', 'category_id', 'detail']);
+        $contact = $request->only(['last_name', 'first_name', 'gender', 'email', 'tel1', 'tel2', 'tel3', 'address', 'building', 'category_id', 'detail']);
 
         $genders = [1 => '男性', 2 => '女性', 3 => 'その他'];
         $contact['gender_text'] = $genders[$contact['gender']] ?? '不明';
@@ -30,9 +30,9 @@ class ContactController extends Controller
         return view('confirm', compact('contact', 'tel'));
     }
 
-    public function store(Request $request) {
-        if ($request->input('action') === 'modify') {
-            return redirect('/');
+    public function storeOrBack(Request $request) {
+        if ($request->action === 'modify') {
+            return redirect()->route('contact.input')->withInput($request->all());
         }
         
         $contact = $request->only([

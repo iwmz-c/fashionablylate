@@ -10,7 +10,7 @@
     <div class="confirm__heading">
         <p>Confirm</p>
     </div>
-    <form class="form" action="/thanks" method="POST">
+    <form class="form" action="{{ route('contact.store') }}" method="POST">
         @csrf
         <div class="confirm-table">
             <table class="confirm-table__inner">
@@ -40,7 +40,9 @@
                     <th class="confirm-table__header">電話番号</th>
                     <td class="confirm-table__text">
                         <input type="tel" name="tel" value="{{ $tel }}"  readonly />
-                        <input type="hidden" name="tel" value="{{ $tel }}" />
+                        <input type="hidden" name="tel1" value="{{ $contact['tel1'] }}" />
+                        <input type="hidden" name="tel2" value="{{ $contact['tel2'] }}" />
+                        <input type="hidden" name="tel3" value="{{ $contact['tel3'] }}" />
                     </td>
                 </tr>
                 <tr class="confirm-table__row">

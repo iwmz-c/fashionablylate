@@ -16,9 +16,9 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', [ContactController::class, 'index']);
+Route::get('/', [ContactController::class, 'index'])->name('contact.input');
 Route::post('/confirm', [ContactController::class, 'confirm']);
-Route::post('/thanks', [ContactController::class, 'store']);
+Route::post('/contact/store', [ContactController::class, 'storeOrBack'])->name('contact.store');
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/login', [LoginController::class, 'create'])->name('login');
